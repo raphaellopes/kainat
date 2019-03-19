@@ -10,12 +10,14 @@ remove: stop
 	- docker image rm -f $(imageName)
 
 build: remove
-	- docker build -t $(imageName) .
+	- docker build \
+		-t $(imageName) \
+		.
 
 volume:
 	- docker create \
 		--name $(volumeName) \
-		-v ~/Workspaces/tests/manaca-site/web:/var/www/html \
+		-v ~/Workspaces/manaca.dev/web:/var/www/html \
 		tianon/true
 
 run: volume
