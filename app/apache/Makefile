@@ -2,7 +2,7 @@ include ../.env
 
 project = httpd
 containerName = $(project).wpbase
-imageName = $(project)
+imageName = $(project):2.4
 
 stop:
 	- docker container stop $(containerName)
