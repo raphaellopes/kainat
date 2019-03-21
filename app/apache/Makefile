@@ -31,9 +31,11 @@ run: ## Run container on port configured on `.env`
 	- @echo $(APACHE_EXPOSED_PORT) 
 	- docker run -dit --rm \
 		--env-file=../.env \
+		--dns 172.17.0.1 \
 		--name $(containerName) \
+		--link php-fpm.wpbase \
 		-p $(APACHE_EXPOSED_PORT):80 \
-		-v ~/Workspaces/manaca.dev/web:$(APACHE_ROOT_DIR)/htdocs/ \
+		-v ${LOCAL_ROOT_DIR}:$(APACHE_ROOT_DIR)/htdocs/ \
 		$(imageName)
 
 bash: ## Start bash inside container

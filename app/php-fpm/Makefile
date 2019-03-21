@@ -1,3 +1,5 @@
+include ../.env
+
 project = php-fpm
 containerName = $(project).wpbase
 imageName = $(project)
@@ -29,12 +31,13 @@ build: remove ## Build a new container
 volume:
 	- docker create \
 		--name $(volumeName) \
-		-v ~/Workspaces/manaca.dev/web:/var/www/html \
+		-v ${LOCAL_ROOT_DIR}:/var/www/html \
 		tianon/true
 
 run: volume ## Run container
 	- docker run -d --rm \
 		--name $(containerName) \
+		--env-file=../.env \
 		-h $(containerName) \
 		-v /tpm:/tpm \
 		-v custom.ini:/usr/local/etc/php/conf.d/custom.ini \
