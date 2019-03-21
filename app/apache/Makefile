@@ -33,7 +33,7 @@ run: ## Run container on port configured on `.env`
 		--env-file=../.env \
 		--dns 172.17.0.1 \
 		--name $(containerName) \
-		--link php-fpm.wpbase \
+		--link php-fpm.wpbase:php-fpm.wpbase \
 		-p $(APACHE_EXPOSED_PORT):80 \
 		-v ${LOCAL_ROOT_DIR}:$(APACHE_ROOT_DIR)/htdocs/ \
 		$(imageName)
