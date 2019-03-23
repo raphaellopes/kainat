@@ -3,6 +3,7 @@ include ../.env
 project = httpd
 containerName = $(project).wpbase
 imageName = $(project):2.4
+volumeName = www-html.wpbase
 
 # HELP
 # This will output the help for each task
@@ -27,16 +28,23 @@ build: remove ## Build a new container
 		-t $(imageName) \
 		.
 
-run: ## Run container on port configured on `.env`
+volume:
+	- docker create \
+		--name $(volumeName) \
+		-v ${LOCAL_ROOT_DIR}:${APACHE_ROOT_DIR}/htdocs \
+		tianon/true
+
+run: volume ## Run container on port configured on `.env`
 	- @echo $(APACHE_EXPOSED_PORT) 
 	- docker run -dit --rm \
-		--env-file=../.env \
-		--dns 172.17.0.1 \
-		--name $(containerName) \
-		--link php-fpm.wpbase:php-fpm.wpbase \
 		-p $(APACHE_EXPOSED_PORT):80 \
-		-v ${LOCAL_ROOT_DIR}:$(APACHE_ROOT_DIR)/htdocs/ \
+		--name $(containerName) \
+		--env-file=../.env \
+		--link php-fpm.wpbase:php-fpm.wpbase \
+		--volumes-from $(volumeName) \
 		$(imageName)
 
 bash: ## Start bash inside container
 	- docker exec -it ${containerName} bash
+
+up: build run ## Run container on port configured in `.env` (Alias to run)

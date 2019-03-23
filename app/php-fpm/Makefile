@@ -31,7 +31,7 @@ build: remove ## Build a new container
 volume:
 	- docker create \
 		--name $(volumeName) \
-		-v ${LOCAL_ROOT_DIR}:/var/www/html \
+		-v ${LOCAL_ROOT_DIR}:${APACHE_ROOT_DIR}/htdocs \
 		tianon/true
 
 run: volume ## Run container
@@ -43,3 +43,8 @@ run: volume ## Run container
 		-v custom.ini:/usr/local/etc/php/conf.d/custom.ini \
 		--volumes-from $(volumeName) \
 		$(imageName)
+
+up: build run ## Run container on port configured in `config.env` (Alias to run)
+
+cmd: ## Start bash inside container
+	- docker exec -it ${containerName} php -a
