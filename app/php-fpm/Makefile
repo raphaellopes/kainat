@@ -49,6 +49,3 @@ run: volume ## Run container
 		$(imageName)
 
 up: build run ## Run container on port configured in `.env` file (Alias to run)
-
-cmd: ## Start bash inside container
-	- docker exec -it ${containerName} php -a
