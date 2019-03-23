@@ -43,3 +43,6 @@ run: volume ## Run container on port configured on `.env` file
 		-e MYSQL_PASSWORD=$(MYSQL_PASSWORD) \
 		$(imageName)
 
+bash: ## Start bash inside container
+	- docker exec -it ${containerName} bash
+
