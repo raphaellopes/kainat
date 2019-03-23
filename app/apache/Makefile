@@ -28,6 +28,9 @@ build: remove ## Build a new container
 		-t $(imageName) \
 		.
 
+build-nc: ## Build the container without caching
+		docker build --no-cache -t $(imageName) .
+
 volume:
 	- docker create \
 		--name $(volumeName) \
