@@ -1,4 +1,7 @@
-include ../.env
+# import .env
+# You can change the default config with `make env="custom.env" build`
+env ?= ../.env
+include $(env)
 
 project = httpd
 containerName = $(project).wpbase
@@ -35,12 +38,11 @@ volume:
 		-v ${LOCAL_ROOT_DIR}:${APACHE_ROOT_DIR}/htdocs \
 		tianon/true
 
-run: volume ## Run container on port configured on `.env`
-	- @echo $(APACHE_EXPOSED_PORT) 
+run: volume ## Run container on port configured on `.env` file
 	- docker run -dit --rm \
 		-p $(APACHE_EXPOSED_PORT):80 \
 		--name $(containerName) \
-		--env-file=../.env \
+		--env-file=$(env) \
 		--link php-fpm.wpbase:php-fpm.wpbase \
 		--volumes-from $(volumeName) \
 		$(imageName)
@@ -48,4 +50,4 @@ run: volume ## Run container on port configured on `.env`
 bash: ## Start bash inside container
 	- docker exec -it ${containerName} bash
 
-up: build run ## Run container on port configured in `.env` (Alias to run)
+up: build run ## Run container on port configured in `.env` file (Alias to run)
