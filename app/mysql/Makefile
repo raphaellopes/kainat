@@ -5,7 +5,7 @@ include $(env)
 
 project = mysql
 containerName = $(project).wpbase
-imageName = $(project):latest
+imageName = $(project):5.7
 volumeName = $(project).wpbase
 
 # HELP
