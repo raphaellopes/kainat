@@ -49,3 +49,4 @@ run: volume ## Run container
 		$(imageName)
 
 up: build run ## Run container on port configured in `.env` file (Alias to run)
+
