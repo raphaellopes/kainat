@@ -25,11 +25,9 @@ logs: ## Show logs
 
 build: remove ## Build a new container
 	- docker build \
+		--no-cache \
 		-t $(imageName) \
 		.
-
-build-nc: ## Build the container without caching
-		docker build --no-cache -t $(imageName) .
 
 volume:
 	- docker create \

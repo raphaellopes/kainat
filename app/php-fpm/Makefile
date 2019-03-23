@@ -25,6 +25,7 @@ logs: ## Show logs
 
 build: remove ## Build a new container
 	- docker build \
+		--no-cache \
 		-t $(imageName) \
 		.
 
