@@ -1,0 +1,16 @@
+#!/bin/bash
+
+rootPath=$(cd -P -- "$(dirname -- "${0}")" && printf '%s\n' "$(pwd -P)")
+appPath="$rootPath/../app"
+
+if [ "$1" == "build" ]
+then
+  make -C "$appPath/apache" build
+  make -C "$appPath/php-fpm" build
+else
+  env=$1
+  shift
+  make -C "$appPath/mysql" env="$env" "$@"
+  make -C "$appPath/php-fpm" env="$env" "$@"
+  make -C "$appPath/apache" env="$env" "$@"
+fi
