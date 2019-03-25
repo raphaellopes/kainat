@@ -33,7 +33,7 @@ volume: ## Create volume to be use on this container
 run: volume ## Run container on port configured on `.env` file
 	- docker run -d --rm \
 		--name $(containerName) \
-		-p 3306:3306 \
+		-p 3307:3306 \
 		-h $(containerName) \
 		-v /tpm:/tpm \
 		-v $(volumeName):/var/lib/mysql \

@@ -41,6 +41,7 @@ volume:
 run: volume ## Run container
 	- docker run -d --rm \
 		--name $(containerName) \
+		--link mysql.wpbase:mysql.wpbase \
 		--env-file=$(env) \
 		-h $(containerName) \
 		-v /tpm:/tpm \
