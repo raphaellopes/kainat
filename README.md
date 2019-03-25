@@ -27,6 +27,25 @@ make -C apache build run
 make -C mysql run
 ```
 
+### Alias
+Add this project on your `.bashrc` file (optional)
+```
+# change path-to-the-project with the path where you cloned this repo
+export PATH="$PATH:{path-to-the-project}/bin"
+```
+
+Close you terminal and open it again. Now you have an alias called
+`wpbase`. You can build your environment running the commands bellow:
+
+```
+# build mysql, apache and php images
+wpbase build
+
+# run the images with a `.env` file passed as a second arg (see `.env.example` file)
+wpbase {path-to-envfile} run
+```
+
+
 ## Help
 ```
 make -C <container> help
