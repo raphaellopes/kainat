@@ -40,13 +40,13 @@ Close you terminal and open it again. Now you have an alias called
 
 ```
 # build mysql, apache and php images
-wpbase build
+kainat build
 
 # stop mysql, apache and php images
-wpbase stop
+kainat stop
 
 # run the images with a `.env` file passed as a second arg (see `.env.example` file)
-wpbase {path-to-envfile} run
+kainat {path-to-envfile} run
 ```
 
 
