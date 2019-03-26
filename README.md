@@ -1,10 +1,11 @@
 # Base Apache + PHP + MySQL docker
 
-This project was created to help with to work with [Bedrock](https://roots.io/bedrock/).
-You create and run php, mysql and apache containers to serve your app.
+This project helps to run a local environment to work with PHP, Apache and MySQL.
+
 
 ## Prerequisites
 - [Docker](https://www.docker.com/)
+
 
 ## Usage
 
@@ -13,7 +14,7 @@ local environment:
 
 ```
 # clone the project
-git clone git@bitbucket.org:Raphaellopes07/wp-base-docker.git
+git clone git@github.com:raphaellopes/wp-base-docker.git
 
 # go to app folder
 cd wp-base-docker/app/
@@ -21,13 +22,13 @@ cd wp-base-docker/app/
 # copy the `.env.example` to `.env` and change the env vars
 cp .env.example .env
 
-# build and run the baseic containers `make -C <container> <task>`
+# build and run the basic containers `make -C <container> <task>`
 make -C php-fmp build run
 make -C apache build run
 make -C mysql run
 ```
 
-### Alias
+### Alias to up basic PHP environment
 Add this project on your `.bashrc` file (optional)
 ```
 # change path-to-the-project with the path where you cloned this repo
@@ -40,6 +41,9 @@ Close you terminal and open it again. Now you have an alias called
 ```
 # build mysql, apache and php images
 wpbase build
+
+# stop mysql, apache and php images
+wpbase stop
 
 # run the images with a `.env` file passed as a second arg (see `.env.example` file)
 wpbase {path-to-envfile} run
