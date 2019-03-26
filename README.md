@@ -1,4 +1,4 @@
-# Base Apache + PHP + MySQL docker
+# Kainat
 
 This project helps to run a local environment to work with PHP, Apache and MySQL.
 
@@ -14,10 +14,10 @@ local environment:
 
 ```
 # clone the project
-git clone git@github.com:raphaellopes/wp-base-docker.git
+git clone git@github.com:raphaellopes/kainat.git
 
 # go to app folder
-cd wp-base-docker/app/
+cd kainat/app/
 
 # copy the `.env.example` to `.env` and change the env vars
 cp .env.example .env
@@ -36,7 +36,7 @@ export PATH="$PATH:{path-to-the-project}/bin"
 ```
 
 Close you terminal and open it again. Now you have an alias called
-`wpbase`. You can build your environment running the commands bellow:
+`kainat`. You can build your environment running the commands bellow:
 
 ```
 # build mysql, apache and php images
