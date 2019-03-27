@@ -4,9 +4,9 @@ env ?= ../.env
 include $(env)
 
 project = php-fpm
-containerName = $(project).wpbase
+containerName = $(project).kainat
 imageName = $(project)
-volumeName = www-html.wpbase
+volumeName = www-html.kainat
 
 # HELP
 # This will output the help for each task
@@ -41,7 +41,7 @@ volume:
 run: volume ## Run container
 	- docker run -d --rm \
 		--name $(containerName) \
-		--link mysql.wpbase:mysql.wpbase \
+		--link mysql.kainat:mysql.kainat \
 		--env-file=$(env) \
 		-h $(containerName) \
 		-v /tpm:/tpm \

@@ -4,9 +4,9 @@ env ?= ../.env
 include $(env)
 
 project = httpd
-containerName = $(project).wpbase
+containerName = $(project).kainat
 imageName = $(project):2.4
-volumeName = www-html.wpbase
+volumeName = www-html.kainat
 
 # HELP
 # This will output the help for each task
@@ -43,7 +43,7 @@ run: volume ## Run container on port configured on `.env` file
 		-p $(APACHE_EXPOSED_PORT):80 \
 		--name $(containerName) \
 		--env-file=$(env) \
-		--link php-fpm.wpbase:php-fpm.wpbase \
+		--link php-fpm.kainat:php-fpm.kainat \
 		--volumes-from $(volumeName) \
 		$(imageName)
 

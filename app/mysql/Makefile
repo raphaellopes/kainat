@@ -4,9 +4,9 @@ env ?= ../.env
 include $(env)
 
 project = mysql
-containerName = $(project).wpbase
+containerName = $(project).kainat
 imageName = $(project):5.7
-volumeName = $(project).wpbase
+volumeName = $(project).kainat
 
 # HELP
 # This will output the help for each task
@@ -35,6 +35,7 @@ run: volume ## Run container on port configured on `.env` file
 		--name $(containerName) \
 		-p 3307:3306 \
 		-h $(containerName) \
+		-v ~/Documents/manaca-files/databases/dump.sql:/docker-entrypoint-initdb.d/dump.sql \
 		-v /tpm:/tpm \
 		-v $(volumeName):/var/lib/mysql \
 		-e MYSQL_ROOT_PASSWORD=$(MYSQL_ROOT_PASSWORD) \
