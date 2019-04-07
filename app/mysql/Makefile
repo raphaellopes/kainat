@@ -35,7 +35,7 @@ run: volume ## Run container on port configured on `.env` file
 		--name $(containerName) \
 		-p 3307:3306 \
 		-h $(containerName) \
-		-v ~/Documents/manaca-files/databases/dump.sql:/docker-entrypoint-initdb.d/dump.sql \
+		-v ~/Workspace/manaca-site/dumps/2019-04-05.sql:/docker-entrypoint-initdb.d/dump.sql \
 		-v /tpm:/tpm \
 		-v $(volumeName):/var/lib/mysql \
 		-e MYSQL_ROOT_PASSWORD=$(MYSQL_ROOT_PASSWORD) \
