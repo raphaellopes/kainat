@@ -4,21 +4,30 @@ rootPath=$(cd -P -- "$(dirname -- "${0}")" && printf '%s\n' "$(pwd -P)")
 appPath="$rootPath/../app"
 apps=(mysql php-fpm apache)
 
-if [ "$1" == "build" ]
+if [ "$1" == "wp" ]
 then
-  make -C "$appPath/apache" build
-  make -C "$appPath/php-fpm" build
-elif [ "$1" == "stop" ]
-then
-  for i in "${apps[@]}"
-  do
-    make -C "$appPath/$i" stop
-  done
-else
-  env=$1
   shift
-  for i in "${apps[@]}"
-  do
-    make -C "$appPath/$i" env="$env" "$@"
-  done
+
+  if [ "$1" == "build" ]
+  then
+    make -C "$appPath/apache" build
+    make -C "$appPath/php-fpm" build
+  elif [ "$1" == "stop" ]
+  then
+    for i in "${apps[@]}"
+    do
+      make -C "$appPath/$i" stop
+    done
+  else
+    env=$1
+    shift
+    for i in "${apps[@]}"
+    do
+      make -C "$appPath/$i" env="$env" "$@"
+    done
+  fi
+else
+  app=$1
+  shift
+  make -C "$appPath/$app" "$@"
 fi
