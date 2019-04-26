@@ -28,7 +28,7 @@ make -C apache build run
 make -C mysql run
 ```
 
-### Alias to up basic PHP environment
+### Alias to use
 Add this project on your `.bashrc` file (optional)
 ```
 # change path-to-the-project with the path where you cloned this repo
@@ -39,14 +39,17 @@ Close you terminal and open it again. Now you have an alias called
 `kainat`. You can build your environment running the commands bellow:
 
 ```
-# build mysql, apache and php images
-kainat build
+# build for wp development (mysql, apache and php images)
+kainat wp build
 
-# stop mysql, apache and php images
-kainat stop
+# stop for wp development (mysql, apache and php images)
+kainat wp stop
 
-# run the images with a `.env` file passed as a second arg (see `.env.example` file)
-kainat {path-to-envfile} run
+# run for wp development the images with a `.env` file passed as a second arg (see `.env.example` file)
+kainat wp {path-to-envfile} run
+
+# to run the containers
+kainat {app-name} {docker command}
 ```
 
 
